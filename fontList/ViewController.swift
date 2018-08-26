@@ -8,11 +8,32 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var fontName_array:[String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        for fontFamilyName in UIFont.familyNames {
+            for fontName in UIFont.fontNames(forFamilyName: fontFamilyName as String){
+                fontName_array.append(fontName)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return fontName_array.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
+        let fontname = fontName_array[indexPath.row]
+        cell.textLabel?.font = UIFont(name: fontname, size: 18)
+        cell.textLabel?.text = "あいうえお ABCDEF"
+        cell.detailTextLabel?.textColor = UIColor.brown
+        cell.detailTextLabel?.text = fontname
+        return cell
     }
 
     override func didReceiveMemoryWarning() {
