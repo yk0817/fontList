@@ -27,10 +27,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-        if let label1 = cell.viewWithTag(1) as? UILabel {
-            label1.text = "こんにちわ"
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as! myTableViewCell
+        cell.myLabel.text = "こんにちわ"
         return cell
     }
 
