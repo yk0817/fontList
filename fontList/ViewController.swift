@@ -27,12 +27,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
-        let fontname = fontName_array[indexPath.row]
-        cell.textLabel?.font = UIFont(name: fontname, size: 18)
-        cell.textLabel?.text = "あいうえお ABCDEF"
-        cell.detailTextLabel?.textColor = UIColor.brown
-        cell.detailTextLabel?.text = fontname
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        if let label1 = cell.viewWithTag(1) as? UILabel {
+            label1.text = "こんにちわ"
+        }
         return cell
     }
 
